@@ -9,8 +9,10 @@ import {
 
 const router = Router();
 
-router.get('/api/languages', getAllLanguages);
-router.get('/api/languages/:id', getLanguageById);
-router.post('/api/languages', createLanguage);
-router.put('/api/languages/:id', updateLanguage);
-router.delete('/api/languages/:id', deleteLanguage);
+router.get('/', getAllLanguages);
+router.get('/:id', getLanguageById);
+router.post('/', createLanguage);
+router.put('/:id', updateLanguage);
+router.delete('/:id', deleteLanguage);
+
+export default router;

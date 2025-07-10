@@ -2,7 +2,7 @@ import languages from "../models/language.model.js";
 
 const isNameUnique = async (name) => {
     const language = await languages.findOne({ where: { name: name } });
-    return character === null;
+    return language === null;
 };
 
 export const getAllLanguages = async (req, res) => {
@@ -18,10 +18,10 @@ export const getAllLanguages = async (req, res) => {
 
 export const getLanguageById = async (req, res) => {
     try {
+        const language = await languages.findByPk(req.params.id);
         if (!language){
             return res.status(404).json({ error: "El id no se encuentra en la base de datos." });
         };
-        const language = await languages.findByPk(req.params.id);
         res.status(200).json(language);
     } catch (error) {
         res.status(500).json({ error: "Error interno en el servidor." });
@@ -62,7 +62,7 @@ export const updateLanguage = async (req, res) => {
         if (!language){
             return res.status(404).json({ error: "El id no se encuentra en la base de datos." });
         };
-        await languages.update(req.body);
+        await languages.update(req.body, { where: { id } });
         res.status(200).json({ message: "El lenguaje se actualizó con éxito:" },language);
     } catch (error) {
         res.status(500).json({ error: "Error interno en el servidor." });
@@ -79,7 +79,7 @@ export const deleteLanguage = async (req, res) => {
         if (!language){
             return res.status(404).json({ error: "No existe ese id en la base de datos." });
         }
-        await languages.destroy();
+        await languages.destroy({ where: { id } });
         res.status(200).json({ message: "El personaje se eliminó con éxito." });
     } catch (error) {
         res.status(500).json({ error: "Error interno en el servidor." });
