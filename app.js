@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import routes from "../recuperatorio-segundo-parcial/src/routes/language.routes.js";
-import db from "../recuperatorio-segundo-parcial/db.js";
+import routes from "./src/routes/language.routes.js";
+import db from "./db.js";
 
 dotenv.config();
 const app = express();

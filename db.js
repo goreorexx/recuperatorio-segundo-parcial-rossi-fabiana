@@ -1,4 +1,4 @@
-import sequelize from "../recuperatorio-segundo-parcial/src/config/database.js";
+import sequelize from "./src/config/database.js";
 
 const db = async (req, res) => {
     try {
