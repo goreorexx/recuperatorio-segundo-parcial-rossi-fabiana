@@ -33,7 +33,7 @@ export const getLanguageById = async (req, res) => {
 export const createLanguage = async (req, res) => {
     try {
         const { name, paradigm, release_year } = req.body;
-        if (!name || !paradigm || !release_year){
+        if (!name || !paradigm ){
             return res.status(400).json({ error: "Faltan datos obligatorios." });
         };
         if (!(await isNameUnique(name))){
@@ -53,7 +53,7 @@ export const updateLanguage = async (req, res) => {
         const { id } = req.params;
         const { name, paradigm, release_year } = req.body;
         const language = await languages.findByPk(id);
-        if (!name || !paradigm || !release_year){
+        if (!name || !paradigm ){
             return res.status(400).json({ error: "Faltan datos obligatorios." });
         };
         if (!(await isNameUnique(name))){
